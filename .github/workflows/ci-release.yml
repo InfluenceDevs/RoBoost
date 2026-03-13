@@ -1,90 +1,111 @@
 name: CI (Release)
-on: [push, pull_request]
+on:
+  push:
+    tags:
+      - "v*"
+  pull_request:
+    branches: [main]
 
 jobs:
   build:
     runs-on: windows-latest
 
     outputs:
-      artifact-id: ${{ steps.upload-artifact.outputs.artifact-id }}
+      version: ${{ steps.get-version.outputs.version }}
 
     steps:
-    - uses: actions/checkout@v6
-      with:
-        submodules: true
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
 
-    - uses: actions/setup-dotnet@v5
-      with:
-        dotnet-version: '6.0.x'
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "6.0.x"
 
-    - name: Restore dependencies
-      run: dotnet restore
+      - name: Get version
+        id: get-version
+        shell: pwsh
+        run: |
+          $version = (Select-Xml -Path "RoBoost/RoBoost.csproj" -XPath "//Version").Node.InnerText
+          echo "version=$version" >> $env:GITHUB_OUTPUT
 
-    - name: Build
-      run: dotnet build -c Release --no-restore
+      - name: Restore dependencies
+        run: dotnet restore
 
-    - name: Publish
-      run: dotnet publish -p:PublishSingleFile=true -p:CommitHash=${{ github.sha }} -p:CommitRef=${{ github.ref_type }}/${{ github.ref_name }} -r win-x64 -c Release --self-contained false .\Bloxstrap\Bloxstrap.csproj
+      - name: Build
+        run: dotnet build -c Release --no-restore
 
-    - name: Upload Artifact
-      id: upload-artifact
-      uses: actions/upload-artifact@v6
-      with:
-        name: Bloxstrap (Release) (${{ github.sha }})
-        path: .\Bloxstrap\bin\Release\net6.0-windows\win-x64\publish\*
+      - name: Publish
+        run: dotnet publish -p:PublishSingleFile=true -p:CommitHash=${{ github.sha }} -p:CommitRef=${{ github.ref_type }}/${{ github.ref_name }} -r win-x64 -c Release --self-contained false .\RoBoost\RoBoost.csproj
+
+      - name: Build Inno Setup Installer
+        uses: Minionguyjpro/Inno-Setup-Action@v1.2.4
+        with:
+          path: Installer/RoBoost.iss
+          options: /DMyAppVersion=${{ steps.get-version.outputs.version }}
+
+      - name: Upload Portable Exe
+        uses: actions/upload-artifact@v4
+        with:
+          name: RoBoost-${{ steps.get-version.outputs.version }}-portable
+          path: .\RoBoost\bin\Release\net6.0-windows\win-x64\publish\RoBoost.exe
+          retention-days: 7
+
+      - name: Upload Installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: RoBoost-${{ steps.get-version.outputs.version }}-setup
+          path: Installer\Output\*.exe
+          retention-days: 7
 
   release:
     needs: build
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
 
     steps:
-      - name: Sign and download artifact
-        uses: signpath/github-action-submit-signing-request@v2.0
+      - name: Download portable exe
+        uses: actions/download-artifact@v4
         with:
-          api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
-          organization-id: '107b3de5-057b-42fc-a985-3546e4261775'
-          project-slug: 'bloxstrap'
-          signing-policy-slug: 'release-signing'
-          artifact-configuration-slug: 'github-ci'
-          github-artifact-id: '${{ needs.build.outputs.artifact-id }}'
-          wait-for-completion: true
-          output-artifact-directory: 'release'
+          name: RoBoost-${{ needs.build.outputs.version }}-portable
+          path: artifacts/portable
 
-      - name: Rename binaries
-        run: mv release/Bloxstrap.exe Bloxstrap-${{ github.ref_name }}.exe
+      - name: Download installer
+        uses: actions/download-artifact@v4
+        with:
+          name: RoBoost-${{ needs.build.outputs.version }}-setup
+          path: artifacts/setup
 
-      - name: Create release
+      - name: Rename portable
+        run: mv artifacts/portable/RoBoost.exe artifacts/portable/RoBoost-${{ github.ref_name }}-portable.exe
+
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          draft: true
-          files: Bloxstrap-${{ github.ref_name }}.exe
-          name: Bloxstrap ${{ github.ref_name }}
+          name: RoBoost ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+          files: |
+            artifacts/portable/RoBoost-${{ github.ref_name }}-portable.exe
+            artifacts/setup/RoBoost-Setup-*.exe
+          body: |
+            ## RoBoost ${{ github.ref_name }}
 
-  release-test:
-    needs: build
-    runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/release-test')
+            Enhanced Roblox launcher with FastFlags — Made by Rloxx / InfluenceDevs
 
-    steps:
-      - name: Sign and download artifact
-        uses: signpath/github-action-submit-signing-request@v2.0
-        with:
-          api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
-          organization-id: '107b3de5-057b-42fc-a985-3546e4261775'
-          project-slug: 'bloxstrap'
-          signing-policy-slug: 'release-signing'
-          artifact-configuration-slug: 'github-ci'
-          github-artifact-id: '${{ needs.build.outputs.artifact-id }}'
-          wait-for-completion: true
-          output-artifact-directory: 'release'
+            ### Downloads
 
-      - name: Rename binaries
-        run: mv release/Bloxstrap.exe Bloxstrap-${{ github.ref_name }}.exe
+            | File | Description |
+            |------|-------------|
+            | `RoBoost-Setup-*.exe` | **Recommended** — Full installer, adds Start Menu shortcut and registry entries |
+            | `RoBoost-*-portable.exe` | Portable — Run directly, no installation needed |
 
-      - name: Create release
-        uses: softprops/action-gh-release@v2
-        with:
-          draft: true
-          files: Bloxstrap-${{ github.ref_name }}.exe
-          name: Bloxstrap ${{ github.ref_name }}
+            ### Requirements
+            - Windows 10/11 (64-bit)
+            - [.NET 6 Desktop Runtime](https://aka.ms/dotnet-core-applaunch?missing_runtime=true&arch=x64&rid=win11-x64&apphost_version=6.0.16&gui=true) (installer will prompt if missing)
+
+            ### What is New
+            See [CHANGELOG.md](https://github.com/InfluenceDevs/RoBoost/blob/main/CHANGELOG.md)

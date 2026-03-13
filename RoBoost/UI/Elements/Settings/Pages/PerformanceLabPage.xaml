@@ -1,0 +1,50 @@
+<ui:UiPage x:Class="RoBoost.UI.Elements.Settings.Pages.PerformanceLabPage"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+           xmlns:controls="clr-namespace:RoBoost.UI.Elements.Controls"
+           mc:Ignorable="d"
+           d:DesignHeight="600"
+           d:DesignWidth="900"
+           Title="PerformanceLabPage"
+           Scrollable="True">
+
+    <StackPanel Margin="0,0,14,14">
+        <TextBlock Text="Performance Lab"
+                   FontSize="30"
+                   FontWeight="Bold"/>
+        <TextBlock Margin="0,4,0,12"
+                   Text="Tune and manage FPS, rendering, memory usage, and performance-related behavior in one place."
+                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+
+        <controls:OptionControl Header="Performance Preset"
+                                Description="Quickly apply a balanced profile for graphics and responsiveness.">
+            <ComboBox Width="240"
+                      Padding="10,5,10,5"
+                      SelectedIndex="1">
+                <ComboBoxItem Content="Low Latency"/>
+                <ComboBoxItem Content="Balanced"/>
+                <ComboBoxItem Content="Quality"/>
+            </ComboBox>
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Background Optimizer"
+                                Description="Reduce background overhead while Roblox is running.">
+            <ui:ToggleSwitch IsChecked="True"/>
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Auto-Clean Temp Data"
+                                Description="Automatically clean temporary update/cache files every launch.">
+            <ui:ToggleSwitch IsChecked="False"/>
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Fast Flag Profile"
+                                Description="Open Fast Flags page for advanced graphics and engine configuration.">
+            <ui:Button Content="Open Fast Flags"
+                       Icon="Flag24"
+                       Click="OpenFastFlags_Click"/>
+        </controls:OptionControl>
+    </StackPanel>
+</ui:UiPage>

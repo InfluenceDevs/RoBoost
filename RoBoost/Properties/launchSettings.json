@@ -1,0 +1,35 @@
+﻿{
+  "profiles": {
+    "RoBoost (Launch)": {
+      "commandName": "Project"
+    },
+    "RoBoost (Quiet Launch)": {
+      "commandName": "Project",
+      "commandLineArgs": "-quiet"
+    },
+    "RoBoost (Uninstall)": {
+      "commandName": "Project",
+      "commandLineArgs": "-uninstall"
+    },
+    "RoBoost (Quiet Uninstall)": {
+      "commandName": "Project",
+      "commandLineArgs": "-uninstall -quiet"
+    },
+    "RoBoost (Menu)": {
+      "commandName": "Project",
+      "commandLineArgs": "-menu"
+    },
+    "RoBoost (Deeplink)": {
+      "commandName": "Project",
+      "commandLineArgs": "-player \"roblox://experiences/start?placeId=13700835620\""
+    },
+    "RoBoost (Studio Launch)": {
+      "commandName": "Project",
+      "commandLineArgs": "-studio"
+    },
+    "RoBoost (Watcher)": {
+      "commandName": "Project",
+      "commandLineArgs": "-watcher"
+    }
+  }
+}

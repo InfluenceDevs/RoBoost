@@ -1,0 +1,60 @@
+<ui:UiPage x:Class="RoBoost.UI.Elements.Settings.Pages.CreatorCreditsPage"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+           xmlns:controls="clr-namespace:RoBoost.UI.Elements.Controls"
+           mc:Ignorable="d"
+           d:DesignHeight="600"
+           d:DesignWidth="900"
+           Title="CreatorCreditsPage"
+           Scrollable="True">
+
+    <StackPanel Margin="0,0,14,14">
+        <TextBlock Text="Creator Credits"
+                FontSize="30"
+                FontWeight="Bold"/>
+        <TextBlock Margin="0,4,0,12"
+                   Text="Project identity, authorship, and inspiration acknowledgement."
+                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+
+        <ui:Card>
+            <StackPanel>
+                <TextBlock Text="Made by Rloxx"
+                        FontSize="24"
+                        FontWeight="SemiBold"/>
+                <TextBlock Margin="0,6,0,0"
+                        Text="Lead creator, branding direction, and feature curation for RoBoost."
+                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                        TextWrapping="Wrap"/>
+            </StackPanel>
+        </ui:Card>
+
+        <ui:Card Margin="0,10,0,0">
+            <StackPanel>
+                <TextBlock Text="Inspiration Credit"
+                        FontSize="18"
+                        FontWeight="SemiBold"/>
+                <TextBlock Margin="0,6,0,0"
+                        Text="RoBoost is inspired by the open-source BloxStrap project and its contributors."
+                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                        TextWrapping="Wrap"/>
+            </StackPanel>
+        </ui:Card>
+
+        <controls:OptionControl Header="Project Repository"
+                Description="Open the official RoBoost repository.">
+            <ui:Button Content="Open GitHub"
+                    Icon="Link24"
+                    Click="OpenRepo_Click"/>
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Issue Tracker"
+                Description="Report bugs or request new features.">
+            <ui:Button Content="Open Issues"
+                    Icon="Bug24"
+                    Click="OpenIssues_Click"/>
+        </controls:OptionControl>
+    </StackPanel>
+</ui:UiPage>

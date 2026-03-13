@@ -1,0 +1,51 @@
+<ui:UiPage x:Class="RoBoost.UI.Elements.Settings.Pages.SessionProfilesPage"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+           xmlns:controls="clr-namespace:RoBoost.UI.Elements.Controls"
+           mc:Ignorable="d"
+           d:DesignHeight="600"
+           d:DesignWidth="900"
+           Title="SessionProfilesPage"
+           Scrollable="True">
+
+    <StackPanel Margin="0,0,14,14">
+        <TextBlock Text="Session Profiles"
+                   FontSize="30"
+                   FontWeight="Bold"/>
+        <TextBlock Margin="0,4,0,12"
+                   Text="Create launch profiles for different priorities like FPS, visuals, or stream mode."
+                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+
+        <controls:OptionControl Header="Active Profile"
+                                Description="Choose what profile should be used when Roblox launches.">
+            <ComboBox Width="260"
+                      Padding="10,5,10,5"
+                      SelectedIndex="1">
+                <ComboBoxItem Content="Competitive FPS"/>
+                <ComboBoxItem Content="Balanced Daily"/>
+                <ComboBoxItem Content="Streamer Safe"/>
+                <ComboBoxItem Content="Cinematic Visual"/>
+            </ComboBox>
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Auto-Switch by Launch Mode"
+                                Description="Use different profiles for Player and Studio.">
+            <ui:ToggleSwitch IsChecked="True"/>
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Preserve Profile on Update"
+                                Description="Keep your selected profile after app or Roblox updates.">
+            <ui:ToggleSwitch IsChecked="True"/>
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Export Profile"
+                                Description="Create a profile backup JSON on your desktop.">
+            <ui:Button Content="Export Profile"
+                       Icon="Save24"
+                       Click="ExportProfile_Click"/>
+        </controls:OptionControl>
+    </StackPanel>
+</ui:UiPage>

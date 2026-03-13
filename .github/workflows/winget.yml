@@ -1,4 +1,4 @@
-name: Publish to Winget
+﻿name: Publish to Winget
 
 on:
   release:
@@ -10,5 +10,6 @@ jobs:
     steps:
       - uses: vedantmgoyal9/winget-releaser@main
         with:
-          identifier: pizzaboxer.Bloxstrap
+          identifier: pizzaboxer.RoBoost
           token: ${{ secrets.WINGET_TOKEN }}
+

@@ -8,7 +8,7 @@
 
 ### 🎉 Initial Release - RoBoost Enhanced Fork
 
-This is the first release of **RoBoost**, an actively-maintained enhanced fork of BloxStrap with focus on FastFlags and ease of use.
+This is the first release of **RoBoost**, an actively-maintained enhanced fork of RoBoost with focus on FastFlags and ease of use.
 
 ### ✨ New Features
 
@@ -37,23 +37,23 @@ This is the first release of **RoBoost**, an actively-maintained enhanced fork o
 - ✅ **Credits** - Proper attribution to original authors (CREDITS.md)
 - ✅ **Active Development** - Regular updates and bug fixes
 
-### 🔄 Changes from BloxStrap 2.11.0
+### 🔄 Changes from RoBoost 2.11.0
 
 #### Rebranding
 
-- Renamed project from **BloxStrap** to **RoBoost**
-- Updated all namespaces from `Bloxstrap.*` to `RoBoost.*`
+- Renamed project from **RoBoost** to **RoBoost**
+- Updated all namespaces from `RoBoost.*` to `RoBoost.*`
 - New project owner: **Rloxx**
 - Updated repository links and references
 - New GitHub repository: https://github.com/Rloxx/RoBoost
 
 #### Project Constants
 
-- `ProjectName`: "BloxStrap" → "RoBoost"
-- `ProjectOwner`: "Bloxstrap" → "Rloxx"
-- `ProjectRepository`: "bloxstraplabs/bloxstrap" → "Rloxx/RoBoost"
-- `ProjectDownloadLink`: "https://bloxstraplabs.com" → "https://github.com/Rloxx/RoBoost"
-- `ProjectHelpLink`: "https://bloxstraplabs.com/wiki/help/" → "https://github.com/Rloxx/RoBoost/wiki/"
+- `ProjectName`: "RoBoost" → "RoBoost"
+- `ProjectOwner`: "RoBoost" → "Rloxx"
+- `ProjectRepository`: "roboostlabs/roboost" → "Rloxx/RoBoost"
+- `ProjectDownloadLink`: "https://roboostlabs.com" → "https://github.com/Rloxx/RoBoost"
+- `ProjectHelpLink`: "https://roboostlabs.com/wiki/help/" → "https://github.com/Rloxx/RoBoost/wiki/"
 - `ProjectSupportLink`: Updated to RoBoost GitHub issues
 
 #### UI/UX Improvements
@@ -96,7 +96,7 @@ This is the first release of **RoBoost**, an actively-maintained enhanced fork o
 
 ### 📋 What's Unchanged
 
-#### Core Functionality (From BloxStrap)
+#### Core Functionality (From RoBoost)
 
 - ✅ Discord Rich Presence integration
 - ✅ Content modding system
@@ -123,11 +123,11 @@ This is the first release of **RoBoost**, an actively-maintained enhanced fork o
 
 ### 🐛 Bug Fixes
 
-No specific bugs fixed in this release as it's a rebranding/enhancement release. All known BloxStrap 2.11.0 issues remain status quo unless addressed.
+No specific bugs fixed in this release as it's a rebranding/enhancement release. All known RoBoost 2.11.0 issues remain status quo unless addressed.
 
 ### 📦 Build Information
 
-- **Base Version:** BloxStrap 2.11.0
+- **Base Version:** RoBoost 2.11.0
 - **Build Date:** 2026-03-12
 - **.NET Target:** net6.0-windows
 - **Platform:** Windows 10/11 (64-bit)
@@ -158,7 +158,7 @@ Planned improvements for upcoming RoBoost releases:
 
 ### 🙏 Credits
 
-- **BloxStrap Team** (pizzaboxer & contributors) - Original project
+- **RoBoost Team** (pizzaboxer & contributors) - Original project
 - **WPF UI Team** (lepoco) - UI library
 - **Rloxx** - RoBoost enhancement and maintenance
 - **Community** - Feedback and support
@@ -177,16 +177,18 @@ RoBoost is licensed under the **MIT License**. See [LICENSE](LICENSE) for full d
 
 ## Version History
 
-### BloxStrap 2.11.0 (Original)
+### RoBoost 2.11.0 (Original)
 
-- Last version of original BloxStrap
-- See original repository for detailed changes: https://github.com/bloxstraplabs/bloxstrap/releases/tag/2.11.0
+- Last version of original RoBoost
+- See original repository for detailed changes: https://github.com/roboostlabs/roboost/releases/tag/2.11.0
 
 ### Earlier Versions
 
-- For BloxStrap version history, visit: https://github.com/bloxstraplabs/bloxstrap/releases
+- For RoBoost version history, visit: https://github.com/roboostlabs/roboost/releases
 
 ---
 
-**RoBoost v1.0.0** - Made by Rloxx, Based on BloxStrap by pizzaboxer
+**RoBoost v1.0.0** - Made by Rloxx, Based on RoBoost by pizzaboxer
+
+
 

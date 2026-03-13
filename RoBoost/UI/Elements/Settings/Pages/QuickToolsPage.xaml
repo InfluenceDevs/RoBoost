@@ -1,0 +1,58 @@
+<ui:UiPage x:Class="RoBoost.UI.Elements.Settings.Pages.QuickToolsPage"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+           xmlns:controls="clr-namespace:RoBoost.UI.Elements.Controls"
+           mc:Ignorable="d"
+           d:DesignHeight="600"
+           d:DesignWidth="900"
+           Title="QuickToolsPage"
+           Scrollable="True">
+
+    <StackPanel Margin="0,0,14,14">
+        <TextBlock Text="Quick Tools"
+                FontSize="30"
+                FontWeight="Bold"/>
+        <TextBlock Margin="0,4,0,12"
+                   Text="Utility shortcuts for folders, logs, diagnostics, and cleanup."
+                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+
+        <controls:OptionControl Header="Open Install Folder"
+                Description="Open the RoBoost installation directory.">
+            <ui:Button Content="Open"
+                    Icon="Folder24"
+                    Click="OpenInstallFolder_Click"/>
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Open Logs Folder"
+                Description="Open where RoBoost and launch logs are stored.">
+            <ui:Button Content="Open"
+                    Icon="DocumentText24"
+                    Click="OpenLogsFolder_Click"/>
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Open Modifications Folder"
+                Description="Quick access to mod and client settings files.">
+            <ui:Button Content="Open"
+                    Icon="WrenchScrewdriver20"
+                    Click="OpenModsFolder_Click"/>
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Clear Temporary Cache"
+                Description="Delete temporary files used by updates and diagnostics.">
+            <ui:Button Content="Clean Cache"
+                    Icon="Delete24"
+                    Appearance="Primary"
+                    Click="ClearCache_Click"/>
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Backup Settings"
+                Description="Create a timestamped backup copy of settings on your desktop.">
+            <ui:Button Content="Backup"
+                    Icon="Save24"
+                    Click="BackupSettings_Click"/>
+        </controls:OptionControl>
+    </StackPanel>
+</ui:UiPage>

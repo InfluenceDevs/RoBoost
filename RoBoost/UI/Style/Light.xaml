@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <SolidColorBrush x:Key="NewTextEditorBackground"
+                         Color="#F2F7FF"/>
+        <SolidColorBrush x:Key="NewTextEditorForeground"
+                         Color="#0F172A"/>
+        <SolidColorBrush x:Key="NewTextEditorLink"
+                         Color="#0EA5E9"/>
+</ResourceDictionary>

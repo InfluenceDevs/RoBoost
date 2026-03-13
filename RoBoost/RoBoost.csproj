@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
@@ -35,7 +35,7 @@
     <EmbeddedResource Include="Resources\Icon2017.ico" />
     <EmbeddedResource Include="Resources\Icon2019.ico" />
     <EmbeddedResource Include="Resources\Icon2022.ico" />
-    <EmbeddedResource Include="Resources\IconBloxstrap.ico" />
+    <EmbeddedResource Include="Resources\IconRoBoost.ico" />
     <EmbeddedResource Include="Resources\IconEarly2015.ico" />
     <EmbeddedResource Include="Resources\IconLate2015.ico" />
     <EmbeddedResource Include="Resources\Mods\Cursor\From2006\ArrowCursor.png" />
@@ -66,7 +66,7 @@
     <ProjectReference Include="..\wpfui\src\Wpf.Ui\Wpf.Ui.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <AssemblyAttribute Include="Bloxstrap.Models.Attributes.BuildMetadataAttribute">
+    <AssemblyAttribute Include="RoBoost.Models.Attributes.BuildMetadataAttribute">
       <_Parameter1>$([System.DateTime]::UtcNow.ToString("s"))Z</_Parameter1>
       <_Parameter2>$(COMPUTERNAME)\$(USERNAME)</_Parameter2>
       <_Parameter3>$(CommitHash)</_Parameter3>
